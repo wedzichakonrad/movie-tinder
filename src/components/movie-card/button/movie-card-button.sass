@@ -1,0 +1,40 @@
+@import "../../../style/variables/variables"
+
+.movie-card-button
+  +flex-center-center
+  flex-direction: column
+  background: none
+  cursor: pointer
+  border: none
+
+  &__icon-wrapper
+    width: 40px
+    height: 40px
+    border-radius: 50%
+    border: 2px solid
+
+  &--accept
+    .movie-card-button
+      &__icon-wrapper
+        border-color: $c-bg-accept
+
+    &:focus
+      outline: none
+
+    &:hover, &:focus
+      .movie-card-button
+        &__icon-wrapper
+          background-color: $c-bg-accept
+
+  &--reject
+    .movie-card-button
+      &__icon-wrapper
+        border-color: $c-bg-reject
+
+    &:focus
+      outline: none
+
+    &:hover, &:focus
+      .movie-card-button
+        &__icon-wrapper
+          background-color: $c-bg-reject
