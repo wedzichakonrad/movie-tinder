@@ -1,26 +1,16 @@
 @import "../../style/variables/variables"
 
 .movie-card
-  position: absolute
-  width: max-content
-  height: max-content
-  left: 0
-  right: 0
-  margin: 0 auto
+  width: 100%
+  height: 100%
 
   &__inner
-    +flex-center-center
+    display: flex
+    align-items: center
     flex-direction: column
-    position: relative
-    max-width: 200px
-    width: 200px
     background-color: $c-bg-light
-    box-shadow: 0 0 2px 2px $c-shadow-light
-    padding: 20px
-
-    +mdm
-      max-width: 400px
-      width: 400px
+    box-shadow: 0 4px 8px 0 $c-shadow-light
+    padding-top: 20px
 
     > div
       width: 100%
@@ -35,20 +25,12 @@
       padding: 0 10px
 
   &__img-wrapper
-    width: 200px
-    height: 200px
-    padding: 20px 0
-
-    +mdm
-      width: 360px
-      height: 360px
+    margin-top: 20px
+    background-color: $c-bg-dark
+    height: 460px
 
     img
       object-fit: contain
 
   &__buttons-wrapper
     +flex-between-center
-
-  &__description-wrapper
-    position: absolute
-    z-index: -1

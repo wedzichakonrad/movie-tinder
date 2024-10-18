@@ -2,39 +2,48 @@
 
 .movie-card-button
   +flex-center-center
-  flex-direction: column
   background: none
   cursor: pointer
-  border: none
+  width: 50%
+  height: 40px
+  border: 2px solid
+  margin: 8px
 
   &__icon-wrapper
-    width: 40px
-    height: 40px
-    border-radius: 50%
-    border: 2px solid
+    width: 32px
+    height: 32px
+
+    svg
+      width: 100%
+      height: 100%
+
+  &:focus
+    outline: none
+
+  &:hover, &:focus
+    color: $c-font-secondary
+
+    svg
+      fill: $c-font-secondary
+
+      path
+        stroke: $c-font-secondary
 
   &--accept
-    .movie-card-button
-      &__icon-wrapper
-        border-color: $c-bg-accept
+    border-color: $c-bg-accept
 
     &:focus
       outline: none
 
     &:hover, &:focus
-      .movie-card-button
-        &__icon-wrapper
-          background-color: $c-bg-accept
+      background-color: $c-bg-accept
 
   &--reject
-    .movie-card-button
-      &__icon-wrapper
-        border-color: $c-bg-reject
-
-    &:focus
-      outline: none
+    border-color: $c-bg-reject
 
     &:hover, &:focus
-      .movie-card-button
-        &__icon-wrapper
-          background-color: $c-bg-reject
+      background-color: $c-bg-reject
+      color: $c-font-secondary
+
+  span
+    font-weight: $s-weight-bold
