@@ -1,11 +1,11 @@
 import './movie-card-button.sass';
 
 type MovieCardButtonProps = {
-    icon: string
-    alt: string
+    Icon: React.FC<React.SVGProps<SVGSVGElement>>
     variant: string
     text: string
     onClick: (variant: string) => void
+    disabled?: boolean
 }
 
 export const MovieCardButtonVariants = {
@@ -13,11 +13,15 @@ export const MovieCardButtonVariants = {
     reject: 'reject'
 }
 
-const MovieCardButton = ({icon, alt, variant = '', text, onClick}: MovieCardButtonProps) => {
+const MovieCardButton = ({Icon, variant = '', text, onClick, disabled}: MovieCardButtonProps) => {
     return (
-        <button className={`movie-card-button movie-card-button--${variant}`} onClick={() => onClick(variant)}>
+        <button
+            className={`movie-card-button movie-card-button--${variant}`}
+            onClick={() => onClick(variant)}
+            disabled={disabled}
+        >
             <div className='movie-card-button__icon-wrapper'>
-                <img src={icon} alt={alt}/>
+                <Icon/>
             </div>
             <span>{text}</span>
         </button>

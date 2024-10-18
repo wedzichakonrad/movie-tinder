@@ -1,19 +1,23 @@
 import './movie-card.sass';
-import {Config} from "../../utils/config";
+import { ReactComponent as Check } from '../../assets/check.svg';
+import { ReactComponent as Cross } from '../../assets/cross.svg';
 import MovieCardButton, {MovieCardButtonVariants} from "./button/movie-card-button";
 import {MovieProps} from "../../utils/types";
 import {updateMovieRecommendation} from "../../api/update-movie-recommendation";
-import {useState} from "react";
+import {useCurrentMovie} from "../../providers/current-movie-provider";
 
 type MovieCardProps = {
     movie: MovieProps
+    onClick?: () => void
+    disabled?: boolean
 }
 
-const MovieCard = ({movie}:MovieCardProps) => {
-    const [isPending, setIsPending] = useState(false);
+const MovieCard = ({movie, onClick, disabled}:MovieCardProps) => {
+    const context = useCurrentMovie();
 
     const onButtonClick = (variant: string) => {
-        updateMovieRecommendation({variant, id: movie.id, onPending: setIsPending})
+        onClick?.();
+        // updateMovieRecommendation({variant, id: movie.id, onPending: setIsPending})
     }
 
     return (
@@ -29,17 +33,17 @@ const MovieCard = ({movie}:MovieCardProps) => {
                 <div className='movie-card__buttons-wrapper'>
                     <MovieCardButton
                         text='Accept'
-                        icon={Config.assets.svgs.check}
+                        Icon={Check}
                         variant={MovieCardButtonVariants.accept}
-                        alt='check icon'
                         onClick={onButtonClick}
+                        disabled={disabled}
                     />
                     <MovieCardButton
                         text='Reject'
-                        icon={Config.assets.svgs.cross}
+                        Icon={Cross}
                         variant={MovieCardButtonVariants.reject}
-                        alt='cross icon'
                         onClick={onButtonClick}
+                        disabled={disabled}
                     />
                 </div>
             </div>

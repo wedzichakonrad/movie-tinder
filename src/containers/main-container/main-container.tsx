@@ -1,13 +1,14 @@
 import './main-container.sass';
-import {data} from "../../api/data";
 import {MovieSection} from "../../components/movie-section/movie-section";
+import {CurrentMovieProvider} from "../../providers/current-movie-provider";
 
 const MainContainer = () => {
-    const currentMovie = data[0];
     return (
         <main className='main-container'>
             <div className='main-container__inner'>
-                <MovieSection movie={currentMovie}/>
+                <CurrentMovieProvider>
+                    <MovieSection/>
+                </CurrentMovieProvider>
             </div>
         </main>
     )
