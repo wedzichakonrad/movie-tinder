@@ -21,7 +21,7 @@ export const data = [
       'https://images-na.ssl-images-amazon.com/images/M/MV5BMTUzNTE2NTkzMV5BMl5BanBnXkFtZTgwMDAzOTUyMDI@._V1_SY1000_CR0,0,674,1000_AL_.jpg',
     title: 'Lord Of The Rings - The Fellowship Of The Ring',
     summary: 'Lorem ipsum.... 3',
-    rating: 9.2,
+    rating: 2.1,
   },
   {
     id: '2301abc',
@@ -29,7 +29,7 @@ export const data = [
       'https://images-na.ssl-images-amazon.com/images/M/MV5BOTAzODEzNDAzMl5BMl5BanBnXkFtZTgwMDU1MTgzNzE@._V1_SY1000_CR0,0,677,1000_AL_.jpg',
     title: 'Star Wars: Episode VII - The Force Awakens',
     summary: 'Lorem ipsum.... 4',
-    rating: 8.2,
+    rating: 4.6,
   },
   {
     id: '2301abc',
@@ -37,7 +37,7 @@ export const data = [
       'https://images-na.ssl-images-amazon.com/images/M/MV5BMTUzNTE2NTkzMV5BMl5BanBnXkFtZTgwMDAzOTUyMDI@._V1_SY1000_CR0,0,674,1000_AL_.jpg',
     title: 'Star Wars: Episode VII - The Force Awakens',
     summary: 'Lorem ipsum.... 5',
-    rating: 8.2,
+    rating: 3.1,
   },
   {
     id: '2301abc',
@@ -45,6 +45,6 @@ export const data = [
       'https://images-na.ssl-images-amazon.com/images/M/MV5BOTAzODEzNDAzMl5BMl5BanBnXkFtZTgwMDU1MTgzNzE@._V1_SY1000_CR0,0,677,1000_AL_.jpg',
     title: 'Star Wars: Episode VII - The Force Awakens',
     summary: 'Lorem ipsum.... 6',
-    rating: 8.2,
+    rating: 1.2,
   },
 ]

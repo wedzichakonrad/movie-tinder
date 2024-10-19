@@ -37,14 +37,15 @@ const MovieCard = ({ movie, onClick, disabled }: MovieCardProps) => {
     accept: 'CARD',
     drop: (item) => {
       if (context) {
-        context.setCurrentMovieIndex((state) => state + 1)
+        console.log(item)
+        onClick?.('reject', movie.id)
       }
     },
   }))
 
   return (
-    <div ref={drop}>
-      <div ref={dragRef} className="movie-card" style={{ opacity }}>
+    <div ref={!disabled ? drop : null}>
+      <div ref={!disabled ? dragRef : null} className="movie-card" style={{ opacity }}>
         <div className="movie-card__inner">
           <div className="movie-card__heading-wrapper">
             <h2>{movie.title}</h2>

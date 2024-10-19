@@ -32,13 +32,13 @@ export const MovieSection = () => {
   }, [])
 
   const changeMovie = () => {
-    context.setCurrentMovieIndex(context.currentMovieIndex + 1)
+    context.setCurrentMovieIndex((state) => state + 1)
     setIsAnimationOngoing(false)
   }
 
   const onButtonClick = (variant: string, movieId: string) => {
     setIsAnimationOngoing(true)
-    setTimeout(() => changeMovie(), 1000)
+    setTimeout(() => changeMovie(), 700)
 
     updateMovieRecommendation({ variant, id: movieId }).catch((err) => {
       throw new Error(err)
@@ -76,11 +76,15 @@ export const MovieSection = () => {
             </div>
           </DndProvider>
           <div className="movie-section__summary-wrapper">
-            {currentMovie && (
-              <>
-                <h3>Summary</h3>
-                <p>{currentMovie.summary}</p>
-              </>
+            {isAnimationOngoing ? (
+              <Loader />
+            ) : (
+              currentMovie && (
+                <>
+                  <h3>Summary</h3>
+                  <p>{currentMovie.summary}</p>
+                </>
+              )
             )}
           </div>
         </>
