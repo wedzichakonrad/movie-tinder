@@ -3,12 +3,11 @@ import { ReactComponent as Check } from '../../assets/check.svg';
 import { ReactComponent as Cross } from '../../assets/cross.svg';
 import MovieCardButton, {MovieCardButtonVariants} from "./button/movie-card-button";
 import {MovieProps} from "../../utils/types";
-import {updateMovieRecommendation} from "../../api/update-movie-recommendation";
 import React, {useRef} from "react";
 
 type MovieCardProps = {
     movie: MovieProps
-    onClick?: () => void
+    onClick?: (variant: string, movieId: string) => void
     disabled?: boolean
 }
 
@@ -19,12 +18,10 @@ const MovieCard = ({movie, onClick, disabled}:MovieCardProps) => {
     const onDragStart = (e: React.DragEvent) => {
         console.log(e,)
         // @ts-ignore
-        ref.current.style.opacity = '0';
         e.dataTransfer.setData("sth", 'value')
     }
     const onButtonClick = (variant: string) => {
-        onClick?.();
-        // updateMovieRecommendation({variant, id: movie.id, onPending: setIsPending})
+        onClick?.(variant, movie.id);
     }
 
     return (
