@@ -3,6 +3,8 @@
 exports[`should match snapshot for movie card component 1`] = `
 <div
   className="movie-card"
+  draggable={true}
+  onDragStart={[Function]}
 >
   <div
     className="movie-card__inner"
