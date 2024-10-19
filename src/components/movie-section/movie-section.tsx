@@ -14,7 +14,6 @@ export const MovieSection = () => {
 
 
     const onButtonClick = () => {
-        console.log('click')
         setIsPending(true)
 
         const nextMovie = () => {
@@ -26,16 +25,16 @@ export const MovieSection = () => {
     }
 
     return (
-        <section className='movie-section'>
+        <section className='movie-section' >
             <div className='movie-section__card-wrapper'>
                 {nextMovie && <div className={`movie-section__next-movie movie-section__next-movie--${isPending ? 'active' : ''}`}>
                     <MovieCard movie={nextMovie}/>
                 </div>}
                 {currentMovie ? (
-                    <div className={`movie-section__current-movie movie-section__current-movie--${isPending ? 'active' : ''}`}>
-                        <MovieCard movie={currentMovie} onClick={onButtonClick} disabled={isPending}/>
-                    </div>)
-                : 'No more movies!'}
+                        <div className={`movie-section__current-movie movie-section__current-movie--${isPending ? 'active' : ''}`}>
+                            <MovieCard movie={currentMovie} onClick={onButtonClick} disabled={isPending}/>
+                        </div>)
+                    : 'No more movies!'}
             </div>
             <div className='movie-section__summary-wrapper'>
                 {currentMovie && (
