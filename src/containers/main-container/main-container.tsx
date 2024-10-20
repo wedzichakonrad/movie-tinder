@@ -1,6 +1,6 @@
-import './main-container.sass'
-import { MovieSection } from '../../components/movie-section/movie-section'
-import { CurrentMovieProvider } from '../../providers/current-movie-provider'
+import './main-container.sass';
+import { MovieSection } from '../../components/movie-section/movie-section';
+import { CurrentMovieProvider } from '../../providers/current-movie-provider';
 
 const MainContainer = () => {
   return (
@@ -11,7 +11,7 @@ const MainContainer = () => {
         </CurrentMovieProvider>
       </div>
     </main>
-  )
-}
+  );
+};
 
-export default MainContainer
+export default MainContainer;

@@ -1,49 +1,49 @@
-import MovieCard from '../movie-card/movie-card'
-import './movie-section.sass'
-import { useCurrentMovie } from '../../providers/current-movie-provider'
-import { useEffect, useState } from 'react'
-import { getMovies } from '../../api/get-movies'
-import { data } from '../../api/data'
-import { updateMovieRecommendation } from '../../api/update-movie-recommendation'
-import Loader from '../loader/loader'
-import { DndProvider } from 'react-dnd'
-import { HTML5Backend } from 'react-dnd-html5-backend'
+import MovieCard from '../movie-card/movie-card';
+import './movie-section.sass';
+import { useCurrentMovie } from '../../providers/current-movie-provider';
+import { useEffect, useState } from 'react';
+import { getMovies } from '../../api/get-movies';
+import { data } from '../../api/data';
+import { updateMovieRecommendation } from '../../api/update-movie-recommendation';
+import Loader from '../loader/loader';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 
 export const MovieSection = () => {
-  const context = useCurrentMovie()
-  const [isAnimationOngoing, setIsAnimationOngoing] = useState(false)
-  const [isFetching, setIsFetching] = useState(false)
-  const [movies, setMovies] = useState<any>([])
-  const currentMovie = movies[context.currentMovieIndex]
-  const nextMovie = movies[context.currentMovieIndex + 1]
+  const context = useCurrentMovie();
+  const [isAnimationOngoing, setIsAnimationOngoing] = useState(false);
+  const [isFetching, setIsFetching] = useState(false);
+  const [movies, setMovies] = useState<any>([]);
+  const currentMovie = movies[context.currentMovieIndex];
+  const nextMovie = movies[context.currentMovieIndex + 1];
 
   useEffect(() => {
-    setIsFetching(true)
+    setIsFetching(true);
     getMovies()
       .then((resData) => {
-        setMovies(resData || data)
+        setMovies(resData || data);
       })
       .catch((err) => {
-        throw new Error(err)
+        throw new Error(err);
       })
       .finally(() => {
-        setIsFetching(false)
-      })
-  }, [])
+        setIsFetching(false);
+      });
+  }, []);
 
   const changeMovie = () => {
-    context.setCurrentMovieIndex((state) => state + 1)
-    setIsAnimationOngoing(false)
-  }
+    context.setCurrentMovieIndex((state) => state + 1);
+    setIsAnimationOngoing(false);
+  };
 
   const onButtonClick = (variant: string, movieId: string) => {
-    setIsAnimationOngoing(true)
-    setTimeout(() => changeMovie(), 700)
+    setIsAnimationOngoing(true);
+    setTimeout(() => changeMovie(), 700);
 
     updateMovieRecommendation({ variant, id: movieId }).catch((err) => {
-      throw new Error(err)
-    })
-  }
+      throw new Error(err);
+    });
+  };
 
   return (
     <section className="movie-section">
@@ -88,5 +88,5 @@ export const MovieSection = () => {
         </>
       )}
     </section>
-  )
-}
+  );
+};

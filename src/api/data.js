@@ -47,4 +47,4 @@ export const data = [
     summary: 'Lorem ipsum.... 6',
     rating: 1.2,
   },
-]
+];

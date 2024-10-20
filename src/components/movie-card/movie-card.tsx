@@ -1,24 +1,24 @@
-import './movie-card.sass'
-import { ReactComponent as Check } from '../../assets/check.svg'
-import { ReactComponent as Cross } from '../../assets/cross.svg'
+import './movie-card.sass';
+import { ReactComponent as Check } from '../../assets/check.svg';
+import { ReactComponent as Cross } from '../../assets/cross.svg';
 import MovieCardButton, {
   MovieCardButtonVariants,
-} from './button/movie-card-button'
-import { MovieProps } from '../../utils/types'
-import { useCurrentMovie } from '../../providers/current-movie-provider'
+} from './button/movie-card-button';
+import { MovieProps } from '../../utils/types';
+import { useCurrentMovie } from '../../providers/current-movie-provider';
 
 type MovieCardProps = {
-  movie: MovieProps
-  onClick?: (variant: string, movieId: string) => void
-  disabled?: boolean
-}
+  movie: MovieProps;
+  onClick?: (variant: string, movieId: string) => void;
+  disabled?: boolean;
+};
 
 const MovieCard = ({ movie, onClick, disabled }: MovieCardProps) => {
-  const context = useCurrentMovie()
+  const context = useCurrentMovie();
 
   const onButtonClick = (variant: string) => {
-    onClick?.(variant, movie.id)
-  }
+    onClick?.(variant, movie.id);
+  };
 
   return (
     <div className="movie-card">
@@ -48,7 +48,7 @@ const MovieCard = ({ movie, onClick, disabled }: MovieCardProps) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default MovieCard
+export default MovieCard;
