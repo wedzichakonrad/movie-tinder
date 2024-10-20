@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { ActionTypes } from '../components/movie-card/movie-card';
+import { EventTypes } from '../components/movie-card/movie-card';
 
 type UseMovieCardDragProps = {
   onMouseDown: () => void;
@@ -25,7 +25,7 @@ export const useMovieCardDrag = ({ onMouseDown }: UseMovieCardDragProps) => {
   };
 
   const getClientX = (event: React.MouseEvent | React.TouchEvent, actionType: string) => {
-    if (ActionTypes.mouse === actionType) {
+    if (EventTypes.mouse === actionType) {
       if ('clientX' in event) return event.clientX;
       return 0;
     } else {
@@ -34,7 +34,7 @@ export const useMovieCardDrag = ({ onMouseDown }: UseMovieCardDragProps) => {
     }
   };
 
-  const handleActionDown = (event: React.MouseEvent | React.TouchEvent, actionType: string) => {
+  const handleEventDown = (event: React.MouseEvent | React.TouchEvent, actionType: string) => {
     const clientX = getClientX(event, actionType);
     startClientXRef.current = clientX;
     const calculatedPosition = calculatePosition(clientX);
@@ -45,7 +45,7 @@ export const useMovieCardDrag = ({ onMouseDown }: UseMovieCardDragProps) => {
     }));
   };
 
-  const handleActionMove = (event: React.MouseEvent | React.TouchEvent, actionType: string) => {
+  const handleEventMove = (event: React.MouseEvent | React.TouchEvent, actionType: string) => {
     if (draggingProps.isDragging) {
       const clientX = getClientX(event, actionType);
       const calculatedPosition = calculatePosition(clientX);
@@ -69,5 +69,5 @@ export const useMovieCardDrag = ({ onMouseDown }: UseMovieCardDragProps) => {
     }
   };
 
-  return { handleActionDown, handleActionMove, onDraggingEnd, draggingProps };
+  return { handleEventDown, handleEventMove, onDraggingEnd, draggingProps };
 };

@@ -9,13 +9,13 @@ type MovieCardProps = {
   movie: MovieProps;
   onClick?: (variant: string, movieId: string) => void;
   disabled?: boolean;
-  handleActionDown?: (e: React.MouseEvent | React.TouchEvent, actionType: string) => void;
-  handleActionMove?: (e: React.MouseEvent | React.TouchEvent, actionType: string) => void;
+  handleEventDown?: (e: React.MouseEvent | React.TouchEvent, actionType: string) => void;
+  handleEventMove?: (e: React.MouseEvent | React.TouchEvent, actionType: string) => void;
   onDraggingEnd?: () => void;
   styles?: {};
 };
 
-export const ActionTypes = {
+export const EventTypes = {
   mouse: 'mouse',
   touch: 'touch',
 };
@@ -24,8 +24,8 @@ const MovieCard = ({
   movie,
   onClick,
   disabled,
-  handleActionDown,
-  handleActionMove,
+  handleEventDown,
+  handleEventMove,
   onDraggingEnd,
   styles,
 }: MovieCardProps) => {
@@ -35,12 +35,12 @@ const MovieCard = ({
 
   return (
     <div
-      onMouseDown={(e: React.MouseEvent) => handleActionDown?.(e, ActionTypes.mouse)}
-      onMouseMove={(e: React.MouseEvent) => handleActionMove?.(e, ActionTypes.mouse)}
+      onMouseDown={(e: React.MouseEvent) => handleEventDown?.(e, EventTypes.mouse)}
+      onMouseMove={(e: React.MouseEvent) => handleEventMove?.(e, EventTypes.mouse)}
       onMouseLeave={onDraggingEnd}
       onMouseUp={onDraggingEnd}
-      onTouchStart={(e: React.TouchEvent) => handleActionDown?.(e, ActionTypes.touch)}
-      onTouchMove={(e: React.TouchEvent) => handleActionMove?.(e, ActionTypes.touch)}
+      onTouchStart={(e: React.TouchEvent) => handleEventDown?.(e, EventTypes.touch)}
+      onTouchMove={(e: React.TouchEvent) => handleEventMove?.(e, EventTypes.touch)}
       onTouchEnd={onDraggingEnd}
       style={styles}
       className='movie-card'>
@@ -50,7 +50,7 @@ const MovieCard = ({
           <span>({movie.rating}/10)</span>
         </div>
         <div className='movie-card__img-wrapper'>
-          <img draggable={false} src={movie.imageURL} alt='movie' />
+          <img draggable={false} src={movie.imageURL} alt={movie.title} />
         </div>
         <div className='movie-card__buttons-wrapper'>
           <MovieCardButton

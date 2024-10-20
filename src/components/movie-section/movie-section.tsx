@@ -9,12 +9,13 @@ import { updateMovieRecommendation } from '../../api/update-movie-recommendation
 import Loader from '../loader/loader';
 import { useMovieCardDrag } from '../../hooks/use-movie-card-drag';
 import { MovieCardButtonVariants } from '../movie-card/button/movie-card-button';
+import { MovieProps } from '../../utils/types';
 
 export const MovieSection = () => {
   const context = useCurrentMovie();
   const [isAnimationOngoing, setIsAnimationOngoing] = useState(false);
   const [isFetching, setIsFetching] = useState(false);
-  const [movies, setMovies] = useState<any>([]);
+  const [movies, setMovies] = useState<MovieProps[]>([]);
   const currentMovie = movies?.[context.currentMovieIndex];
   const nextMovie = movies?.[context.currentMovieIndex + 1];
 
@@ -46,7 +47,7 @@ export const MovieSection = () => {
     });
   };
 
-  const { handleActionDown, handleActionMove, onDraggingEnd, draggingProps } = useMovieCardDrag({
+  const { handleEventDown, handleEventMove, onDraggingEnd, draggingProps } = useMovieCardDrag({
     onMouseDown: () => onButtonClick(MovieCardButtonVariants.reject, currentMovie.id),
   });
 
@@ -70,8 +71,8 @@ export const MovieSection = () => {
                   movie={currentMovie}
                   onClick={onButtonClick}
                   disabled={isAnimationOngoing}
-                  handleActionDown={handleActionDown}
-                  handleActionMove={handleActionMove}
+                  handleEventDown={handleEventDown}
+                  handleEventMove={handleEventMove}
                   onDraggingEnd={onDraggingEnd}
                   styles={draggingProps.styles}
                 />
