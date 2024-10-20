@@ -8,14 +8,16 @@ import { data } from '../../api/data';
 import { updateMovieRecommendation } from '../../api/update-movie-recommendation';
 import Loader from '../loader/loader';
 import { useMovieCardDrag } from '../../hooks/use-movie-card-drag';
+import { MovieCardButtonVariants } from '../movie-card/button/movie-card-button';
+import { MovieProps } from '../../utils/types';
 
 export const MovieSection = () => {
   const context = useCurrentMovie();
   const [isAnimationOngoing, setIsAnimationOngoing] = useState(false);
   const [isFetching, setIsFetching] = useState(false);
-  const [movies, setMovies] = useState<any>([]);
-  const currentMovie = movies[context.currentMovieIndex];
-  const nextMovie = movies[context.currentMovieIndex + 1];
+  const [movies, setMovies] = useState<MovieProps[]>([]);
+  const currentMovie = movies?.[context.currentMovieIndex];
+  const nextMovie = movies?.[context.currentMovieIndex + 1];
 
   useEffect(() => {
     setIsFetching(true);
@@ -45,8 +47,8 @@ export const MovieSection = () => {
     });
   };
 
-  const { handleMouseDown, handleMouseMove, onDraggingEnd, draggingProps } = useMovieCardDrag({
-    onMouseDown: () => onButtonClick('reject', currentMovie.id),
+  const { handleEventDown, handleEventMove, onDraggingEnd, draggingProps } = useMovieCardDrag({
+    onMouseDown: () => onButtonClick(MovieCardButtonVariants.reject, currentMovie.id),
   });
 
   return (
@@ -69,8 +71,8 @@ export const MovieSection = () => {
                   movie={currentMovie}
                   onClick={onButtonClick}
                   disabled={isAnimationOngoing}
-                  handleMouseDown={handleMouseDown}
-                  handleMouseMove={handleMouseMove}
+                  handleEventDown={handleEventDown}
+                  handleEventMove={handleEventMove}
                   onDraggingEnd={onDraggingEnd}
                   styles={draggingProps.styles}
                 />
@@ -79,7 +81,7 @@ export const MovieSection = () => {
               'No more movies!'
             )}
             <div
-              className={`movie-section__swipe movie-section__swipe--${draggingProps.calculatedPosition === 100 ? 'active' : ''}`}>
+              className={`movie-section__swipe-popup movie-section__swipe-popup--${draggingProps.calculatedPosition === 100 ? 'active' : ''}`}>
               Reject
             </div>
           </div>
