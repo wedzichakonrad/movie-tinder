@@ -1,5 +1,5 @@
-import MovieCard from './movie-card'
-import {render, screen} from "@testing-library/react";
+import MovieCard from './movie-card';
+import { render, screen } from '@testing-library/react';
 
 it('should match snapshot for movie card component', () => {
   const movie = {
@@ -8,10 +8,10 @@ it('should match snapshot for movie card component', () => {
     title: 'title',
     summary: 'lorem ipsum',
     rating: 4,
-  }
+  };
 
-  render(<MovieCard movie={movie} />)
+  render(<MovieCard movie={movie} />);
 
   const component = screen.getByText(movie.title);
   expect(component).toBeInTheDocument();
-})
+});

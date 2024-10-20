@@ -1,4 +1,4 @@
-import './loader.sass'
+import './loader.sass';
 
 const Loader = () => {
   return (
@@ -6,7 +6,7 @@ const Loader = () => {
       <div className="loader__inner" />
       <p>Loading...</p>
     </div>
-  )
-}
+  );
+};
 
-export default Loader
+export default Loader;

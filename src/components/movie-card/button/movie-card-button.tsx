@@ -1,17 +1,17 @@
-import './movie-card-button.sass'
+import './movie-card-button.sass';
 
 type MovieCardButtonProps = {
-  Icon: React.FC<React.SVGProps<SVGSVGElement>>
-  variant: string
-  text: string
-  onClick: (variant: string) => void
-  disabled?: boolean
-}
+  Icon: React.FC<React.SVGProps<SVGSVGElement>>;
+  variant: string;
+  text: string;
+  onClick: (variant: string) => void;
+  disabled?: boolean;
+};
 
 export const MovieCardButtonVariants = {
   accept: 'accept',
   reject: 'reject',
-}
+};
 
 const MovieCardButton = ({
   Icon,
@@ -31,7 +31,7 @@ const MovieCardButton = ({
       </div>
       <span>{text}</span>
     </button>
-  )
-}
+  );
+};
 
-export default MovieCardButton
+export default MovieCardButton;
