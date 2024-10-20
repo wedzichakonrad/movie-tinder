@@ -51,30 +51,28 @@ export const MovieSection = () => {
         <Loader />
       ) : (
         <>
-          <DndProvider backend={HTML5Backend}>
-            <div className="movie-section__card-wrapper">
-              {nextMovie && (
-                <div
-                  className={`movie-section__next-movie movie-section__next-movie--${isAnimationOngoing ? 'active' : ''}`}
-                >
-                  <MovieCard movie={nextMovie} />
-                </div>
-              )}
-              {currentMovie ? (
-                <div
-                  className={`movie-section__current-movie movie-section__current-movie--${isAnimationOngoing ? 'active' : ''}`}
-                >
-                  <MovieCard
-                    movie={currentMovie}
-                    onClick={onButtonClick}
-                    disabled={isAnimationOngoing}
-                  />
-                </div>
-              ) : (
-                'No more movies!'
-              )}
-            </div>
-          </DndProvider>
+          <div className="movie-section__card-wrapper">
+            {nextMovie && (
+              <div
+                className={`movie-section__next-movie movie-section__next-movie--${isAnimationOngoing ? 'active' : ''}`}
+              >
+                <MovieCard movie={nextMovie} />
+              </div>
+            )}
+            {currentMovie ? (
+              <div
+                className={`movie-section__current-movie movie-section__current-movie--${isAnimationOngoing ? 'active' : ''}`}
+              >
+                <MovieCard
+                  movie={currentMovie}
+                  onClick={onButtonClick}
+                  disabled={isAnimationOngoing}
+                />
+              </div>
+            ) : (
+              'No more movies!'
+            )}
+          </div>
           <div className="movie-section__summary-wrapper">
             {isAnimationOngoing ? (
               <Loader />
