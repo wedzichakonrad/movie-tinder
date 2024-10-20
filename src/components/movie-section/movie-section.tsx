@@ -7,6 +7,7 @@ import { getMovies } from '../../api/get-movies';
 import { data } from '../../api/data';
 import { updateMovieRecommendation } from '../../api/update-movie-recommendation';
 import Loader from '../loader/loader';
+import { useMovieCardDrag } from '../../hooks/use-movie-card-drag';
 
 export const MovieSection = () => {
   const context = useCurrentMovie();
@@ -44,6 +45,10 @@ export const MovieSection = () => {
     });
   };
 
+  const { handleMouseDown, handleMouseMove, onDraggingEnd, draggingProps } = useMovieCardDrag({
+    onMouseDown: () => onButtonClick('reject', currentMovie.id),
+  });
+
   return (
     <section className='movie-section'>
       {isFetching ? (
@@ -60,11 +65,23 @@ export const MovieSection = () => {
             {currentMovie ? (
               <div
                 className={`movie-section__current-movie movie-section__current-movie--${isAnimationOngoing ? 'active' : ''}`}>
-                <MovieCard movie={currentMovie} onClick={onButtonClick} disabled={isAnimationOngoing} />
+                <MovieCard
+                  movie={currentMovie}
+                  onClick={onButtonClick}
+                  disabled={isAnimationOngoing}
+                  handleMouseDown={handleMouseDown}
+                  handleMouseMove={handleMouseMove}
+                  onDraggingEnd={onDraggingEnd}
+                  styles={draggingProps.styles}
+                />
               </div>
             ) : (
               'No more movies!'
             )}
+            <div
+              className={`movie-section__swipe movie-section__swipe--${draggingProps.calculatedPosition === 100 ? 'active' : ''}`}>
+              Reject
+            </div>
           </div>
           <div className='movie-section__summary-wrapper'>
             {isAnimationOngoing ? (
