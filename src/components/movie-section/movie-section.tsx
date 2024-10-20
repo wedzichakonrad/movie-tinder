@@ -1,3 +1,4 @@
+import React from 'react';
 import MovieCard from '../movie-card/movie-card';
 import './movie-section.sass';
 import { useCurrentMovie } from '../../providers/current-movie-provider';
@@ -6,8 +7,6 @@ import { getMovies } from '../../api/get-movies';
 import { data } from '../../api/data';
 import { updateMovieRecommendation } from '../../api/update-movie-recommendation';
 import Loader from '../loader/loader';
-import { DndProvider } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
 
 export const MovieSection = () => {
   const context = useCurrentMovie();
@@ -46,34 +45,28 @@ export const MovieSection = () => {
   };
 
   return (
-    <section className="movie-section">
+    <section className='movie-section'>
       {isFetching ? (
         <Loader />
       ) : (
         <>
-          <div className="movie-section__card-wrapper">
+          <div className='movie-section__card-wrapper'>
             {nextMovie && (
               <div
-                className={`movie-section__next-movie movie-section__next-movie--${isAnimationOngoing ? 'active' : ''}`}
-              >
+                className={`movie-section__next-movie movie-section__next-movie--${isAnimationOngoing ? 'active' : ''}`}>
                 <MovieCard movie={nextMovie} />
               </div>
             )}
             {currentMovie ? (
               <div
-                className={`movie-section__current-movie movie-section__current-movie--${isAnimationOngoing ? 'active' : ''}`}
-              >
-                <MovieCard
-                  movie={currentMovie}
-                  onClick={onButtonClick}
-                  disabled={isAnimationOngoing}
-                />
+                className={`movie-section__current-movie movie-section__current-movie--${isAnimationOngoing ? 'active' : ''}`}>
+                <MovieCard movie={currentMovie} onClick={onButtonClick} disabled={isAnimationOngoing} />
               </div>
             ) : (
               'No more movies!'
             )}
           </div>
-          <div className="movie-section__summary-wrapper">
+          <div className='movie-section__summary-wrapper'>
             {isAnimationOngoing ? (
               <Loader />
             ) : (

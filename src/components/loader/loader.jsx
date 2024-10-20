@@ -1,9 +1,10 @@
+import React from 'react';
 import './loader.sass';
 
 const Loader = () => {
   return (
-    <div className="loader">
-      <div className="loader__inner" />
+    <div className='loader'>
+      <div className='loader__inner' />
       <p>Loading...</p>
     </div>
   );
