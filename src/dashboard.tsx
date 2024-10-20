@@ -6,7 +6,7 @@ import TopBar from './components/top-bar/top-bar';
 
 const Dashboard = () => {
   return (
-    <div className="dashboard">
+    <div className='dashboard'>
       <TopBar />
       <MainContainer />
       <Footer />

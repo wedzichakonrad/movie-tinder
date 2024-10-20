@@ -14,18 +14,13 @@ const defaultContextValues = {
   setCurrentMovieIndex: () => {},
 };
 
-export const CurrentMovieContext =
-  createContext<CurrentMovieContextProps>(defaultContextValues);
+export const CurrentMovieContext = createContext<CurrentMovieContextProps>(defaultContextValues);
 
-export const CurrentMovieProvider = ({
-  children,
-}: CurrentMovieProviderProps) => {
+export const CurrentMovieProvider = ({ children }: CurrentMovieProviderProps) => {
   const [currentMovieIndex, setCurrentMovieIndex] = useState<number>(0);
 
   return (
-    <CurrentMovieContext.Provider
-      value={{ currentMovieIndex, setCurrentMovieIndex }}
-    >
+    <CurrentMovieContext.Provider value={{ currentMovieIndex, setCurrentMovieIndex }}>
       {children}
     </CurrentMovieContext.Provider>
   );
