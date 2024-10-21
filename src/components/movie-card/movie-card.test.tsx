@@ -1,7 +1,7 @@
 import MovieCard from './movie-card';
 import { render, screen } from '@testing-library/react';
 
-it('should match snapshot for movie card component', () => {
+it('should render movie card component', () => {
   const movie = {
     id: 'id1',
     imageURL: 'url',

@@ -1,5 +1,4 @@
 import React from 'react';
-import './style/style.sass';
 import Footer from './components/footer/footer';
 import MainContainer from './containers/main-container/main-container';
 import TopBar from './components/top-bar/top-bar';
