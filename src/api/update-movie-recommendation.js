@@ -1,11 +1,16 @@
-import axios from 'axios';
 import { Config } from '../utils/config';
 
-export const updateMovieRecommendation = async ({ id, variant }) => {
-  try {
-    const response = await axios.put(`${Config.baseURL}/recommendations/${id}/${variant}`);
-    return response?.data;
-  } catch (error) {
-    console.error(error);
-  }
+const updateMovieRecommendationPromise = ({ variant, movieId }) => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      // In resolve, we would normally return response.data
+      // const response = await axios.put(`${Config.baseURL}/recommendations/${id}/${variant}`);
+      resolve(`${Config.baseURL}/recommendations/${movieId}/${variant}`);
+    }, 1000);
+  });
+};
+export const updateMovieRecommendation = (variant, movieId) => {
+  updateMovieRecommendationPromise({ variant, movieId }).catch((err) => {
+    throw new Error(err);
+  });
 };

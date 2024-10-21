@@ -1,9 +1,9 @@
 import React, { createContext, useContext, useState } from 'react';
 
-type CurrentMovieContextProps = {
+interface CurrentMovieContextProps {
   currentMovieIndex: number;
   setCurrentMovieIndex: React.Dispatch<React.SetStateAction<number>>;
-};
+}
 
 type CurrentMovieProviderProps = {
   children: React.ReactNode;
@@ -14,7 +14,7 @@ const defaultContextValues = {
   setCurrentMovieIndex: () => {},
 };
 
-export const CurrentMovieContext = createContext<CurrentMovieContextProps>(defaultContextValues);
+const CurrentMovieContext = createContext<CurrentMovieContextProps>(defaultContextValues);
 
 export const CurrentMovieProvider = ({ children }: CurrentMovieProviderProps) => {
   const [currentMovieIndex, setCurrentMovieIndex] = useState<number>(0);

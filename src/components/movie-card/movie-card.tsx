@@ -9,16 +9,16 @@ type MovieCardProps = {
   movie: MovieProps;
   onClick?: (variant: string, movieId: string) => void;
   disabled?: boolean;
-  handleEventDown?: (e: React.MouseEvent | React.TouchEvent, actionType: string) => void;
-  handleEventMove?: (e: React.MouseEvent | React.TouchEvent, actionType: string) => void;
+  handleEventDown?: (e: React.MouseEvent | React.TouchEvent, actionType: number) => void;
+  handleEventMove?: (e: React.MouseEvent | React.TouchEvent, actionType: number) => void;
   onDraggingEnd?: () => void;
   styles?: {};
 };
 
-export const EventTypes = {
-  mouse: 'mouse',
-  touch: 'touch',
-};
+export enum EventTypes {
+  MOUSE,
+  TOUCH,
+}
 
 const MovieCard = ({
   movie,
@@ -35,12 +35,12 @@ const MovieCard = ({
 
   return (
     <div
-      onMouseDown={(e: React.MouseEvent) => handleEventDown?.(e, EventTypes.mouse)}
-      onMouseMove={(e: React.MouseEvent) => handleEventMove?.(e, EventTypes.mouse)}
+      onMouseDown={(e: React.MouseEvent) => handleEventDown?.(e, EventTypes.MOUSE)}
+      onMouseMove={(e: React.MouseEvent) => handleEventMove?.(e, EventTypes.MOUSE)}
       onMouseLeave={onDraggingEnd}
       onMouseUp={onDraggingEnd}
-      onTouchStart={(e: React.TouchEvent) => handleEventDown?.(e, EventTypes.touch)}
-      onTouchMove={(e: React.TouchEvent) => handleEventMove?.(e, EventTypes.touch)}
+      onTouchStart={(e: React.TouchEvent) => handleEventDown?.(e, EventTypes.TOUCH)}
+      onTouchMove={(e: React.TouchEvent) => handleEventMove?.(e, EventTypes.TOUCH)}
       onTouchEnd={onDraggingEnd}
       style={styles}
       className='movie-card'>

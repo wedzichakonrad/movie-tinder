@@ -4,7 +4,6 @@ import './movie-section.sass';
 import { useCurrentMovie } from '../../providers/current-movie-provider';
 import { useEffect, useState } from 'react';
 import { getMovies } from '../../api/get-movies';
-import { data } from '../../api/data';
 import { updateMovieRecommendation } from '../../api/update-movie-recommendation';
 import Loader from '../loader/loader';
 import { useMovieCardDrag } from '../../hooks/use-movie-card-drag';
@@ -20,17 +19,7 @@ export const MovieSection = () => {
   const nextMovie = movies?.[context.currentMovieIndex + 1];
 
   useEffect(() => {
-    setIsFetching(true);
-    getMovies()
-      .then((resData) => {
-        setMovies(resData || data);
-      })
-      .catch((err) => {
-        throw new Error(err);
-      })
-      .finally(() => {
-        setIsFetching(false);
-      });
+    getMovies({ onPending: setIsFetching, onGet: setMovies });
   }, []);
 
   const changeMovie = () => {
@@ -39,12 +28,9 @@ export const MovieSection = () => {
   };
 
   const onButtonClick = (variant: string, movieId: string) => {
+    updateMovieRecommendation(variant, movieId);
     setIsAnimationOngoing(true);
     setTimeout(() => changeMovie(), 700);
-
-    updateMovieRecommendation({ variant, id: movieId }).catch((err) => {
-      throw new Error(err);
-    });
   };
 
   const { handleEventDown, handleEventMove, onDraggingEnd, draggingProps } = useMovieCardDrag({
@@ -52,7 +38,7 @@ export const MovieSection = () => {
   });
 
   return (
-    <section className='movie-section'>
+    <section className='movie-section' data-testid='movie-section'>
       {isFetching ? (
         <Loader />
       ) : (
