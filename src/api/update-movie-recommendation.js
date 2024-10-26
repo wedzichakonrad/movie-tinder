@@ -9,7 +9,7 @@ const updateMovieRecommendationPromise = ({ variant, movieId }) => {
     }, 1000);
   });
 };
-export const updateMovieRecommendation = (variant, movieId) => {
+export const updateMovieRecommendation = async (variant, movieId) => {
   updateMovieRecommendationPromise({ variant, movieId }).catch((err) => {
     throw new Error(err);
   });
