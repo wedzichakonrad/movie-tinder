@@ -18,8 +18,13 @@ export const MovieSection = () => {
   const currentMovie = movies?.[context.currentMovieIndex];
   const nextMovie = movies?.[context.currentMovieIndex + 1];
 
+  const fetchMovies = async () => {
+    const movies = await getMovies({ onPending: setIsFetching });
+    setMovies(movies);
+  };
+
   useEffect(() => {
-    getMovies({ onPending: setIsFetching, onGet: setMovies });
+    fetchMovies();
   }, []);
 
   const changeMovie = () => {
