@@ -33,7 +33,7 @@ export const MovieSection = () => {
   };
 
   const onButtonClick = (variant: string, movieId: string) => {
-    updateMovieRecommendation(variant, movieId);
+    updateMovieRecommendation({variant, movieId});
     setIsAnimationOngoing(true);
     setTimeout(() => changeMovie(), 700);
   };
