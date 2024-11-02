@@ -1,4 +1,6 @@
-export const data = [
+import { MovieProps } from '../utils/types';
+
+export const data: MovieProps[] = [
   {
     id: '1and3011',
     imageURL:

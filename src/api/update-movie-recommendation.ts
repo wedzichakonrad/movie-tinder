@@ -1,6 +1,11 @@
 import { Config } from '../utils/config';
 
-const updateMovieRecommendationPromise = ({ variant, movieId }) => {
+interface UpdateMovieRecommendationProps {
+  variant: string;
+  movieId: string;
+}
+
+const updateMovieRecommendationPromise = ({ variant, movieId }: UpdateMovieRecommendationProps) => {
   return new Promise((resolve) => {
     setTimeout(() => {
       // In resolve, we would normally return response.data
@@ -9,7 +14,7 @@ const updateMovieRecommendationPromise = ({ variant, movieId }) => {
     }, 1000);
   });
 };
-export const updateMovieRecommendation = async (variant, movieId) => {
+export const updateMovieRecommendation = async ({ variant, movieId }: UpdateMovieRecommendationProps) => {
   updateMovieRecommendationPromise({ variant, movieId }).catch((err) => {
     throw new Error(err);
   });
