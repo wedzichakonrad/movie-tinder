@@ -1,11 +1,13 @@
 import React from 'react';
-import './top-bar.sass';
+import { AppBar, Typography } from '@mui/material';
 
 const TopBar = () => {
   return (
-    <header className='top-bar'>
-      <h1 className='top-bar__page-header'>Movie tinder</h1>
-    </header>
+      <AppBar>
+        <Typography variant='h6' component='div' sx={{ padding: '12px 12px 12px 24px' }}>
+          Movie tinder
+        </Typography>
+      </AppBar>
   );
 };
 

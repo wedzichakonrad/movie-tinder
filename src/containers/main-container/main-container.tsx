@@ -1,14 +1,12 @@
 import React from 'react';
-import './main-container.sass';
 import { MovieSection } from '../../components/movie-section/movie-section';
+import { Box } from '@mui/material';
 
 const MainContainer = () => {
   return (
-    <main className='main-container'>
-      <div className='main-container__inner'>
-        <MovieSection />
-      </div>
-    </main>
+    <Box component='main' sx={{ position: 'relative', top: '56px' }}>
+      <MovieSection />
+    </Box>
   );
 };
 
