@@ -4,6 +4,7 @@ import { ReactComponent as Check } from '../../assets/check.svg';
 import { ReactComponent as Cross } from '../../assets/cross.svg';
 import MovieCardButton, { MovieCardButtonVariants } from './button/movie-card-button';
 import { MovieProps } from '../../utils/types';
+import { Card, CardActions, CardHeader, CardMedia } from '@mui/material';
 
 type MovieCardProps = {
   movie: MovieProps;
@@ -34,7 +35,7 @@ const MovieCard = ({
   };
 
   return (
-    <div
+    <Card
       onMouseDown={(e: React.MouseEvent) => handleEventDown?.(e, EventTypes.MOUSE)}
       onMouseMove={(e: React.MouseEvent) => handleEventMove?.(e, EventTypes.MOUSE)}
       onMouseLeave={onDraggingEnd}
@@ -43,36 +44,32 @@ const MovieCard = ({
       onTouchMove={(e: React.TouchEvent) => handleEventMove?.(e, EventTypes.TOUCH)}
       onTouchEnd={onDraggingEnd}
       style={styles}
+      sx={{ maxHeight: 600 }}
       className='movie-card'>
-      <div className='movie-card__inner'>
-        <div className='movie-card__heading-wrapper'>
-          <h2>{movie.title}</h2>
-          <span>({movie.rating}/10)</span>
-        </div>
-        <div className='movie-card__img-wrapper'>
-          <img draggable={false} src={movie.imageURL} alt={movie.title} />
-        </div>
-        <div className='movie-card__buttons-wrapper'>
-          <MovieCardButton
-            text='Accept'
-            Icon={Check}
-            variant={MovieCardButtonVariants.accept}
-            onClick={onButtonClick}
-            disabled={disabled}
-          />
-          <MovieCardButton
-            text='Reject'
-            Icon={Cross}
-            variant={MovieCardButtonVariants.reject}
-            onClick={onButtonClick}
-            disabled={disabled}
-          />
-        </div>
-      </div>
-    </div>
+      <CardHeader>
+        <h2>{movie.title}</h2>
+        <span>({movie.rating}/10)</span>
+      </CardHeader>
+      <CardMedia component='img' height='194' image={movie.imageURL} alt={movie.title} />
+      <CardActions>
+        <MovieCardButton
+          text='Accept'
+          Icon={Check}
+          variant={MovieCardButtonVariants.accept}
+          onClick={onButtonClick}
+          disabled={disabled}
+        />
+        <MovieCardButton
+          text='Reject'
+          Icon={Cross}
+          variant={MovieCardButtonVariants.reject}
+          onClick={onButtonClick}
+          disabled={disabled}
+        />
+      </CardActions>
+    </Card>
   );
 };
-
 
 MovieCard.displayName = 'MovieCard';
 export default React.memo(MovieCard);

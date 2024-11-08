@@ -9,6 +9,7 @@ import Loader from '../loader/loader';
 import { useMovieCardDrag } from '../../hooks/use-movie-card-drag';
 import { MovieCardButtonVariants } from '../movie-card/button/movie-card-button';
 import { MovieProps } from '../../utils/types';
+import { Grid2, Stack, Typography } from '@mui/material';
 
 export const MovieSection = () => {
   const context = useCurrentMovie();
@@ -33,7 +34,7 @@ export const MovieSection = () => {
   };
 
   const onButtonClick = (variant: string, movieId: string) => {
-    updateMovieRecommendation({variant, movieId});
+    updateMovieRecommendation({ variant, movieId });
     setIsAnimationOngoing(true);
     setTimeout(() => changeMovie(), 700);
   };
@@ -43,20 +44,20 @@ export const MovieSection = () => {
   });
 
   return (
-    <section className='movie-section' data-testid='movie-section'>
+    <Stack sx={{ padding: '24px' }} data-testid='movie-section'>
       {isFetching ? (
         <Loader />
       ) : (
         <>
-          <div className='movie-section__card-wrapper'>
+          <Grid2 container className='movie-section__card-wrapper'>
             {nextMovie && (
-              <div
+              <Grid2
                 className={`movie-section__next-movie movie-section__next-movie--${isAnimationOngoing ? 'active' : ''}`}>
                 <MovieCard movie={nextMovie} />
-              </div>
+              </Grid2>
             )}
             {currentMovie ? (
-              <div
+              <Grid2
                 className={`movie-section__current-movie movie-section__current-movie--${isAnimationOngoing ? 'active' : ''}`}>
                 <MovieCard
                   movie={currentMovie}
@@ -67,29 +68,37 @@ export const MovieSection = () => {
                   onDraggingEnd={onDraggingEnd}
                   styles={draggingProps.styles}
                 />
-              </div>
+              </Grid2>
             ) : (
               'No more movies!'
             )}
-            <div
+            <Grid2
               className={`movie-section__swipe-popup movie-section__swipe-popup--${draggingProps.calculatedPosition === 100 ? 'active' : ''}`}>
               Reject
-            </div>
-          </div>
-          <div className='movie-section__summary-wrapper'>
+            </Grid2>
+          </Grid2>
+          <Stack className='movie-section__summary-wrapper'>
             {isAnimationOngoing ? (
               <Loader />
             ) : (
               currentMovie && (
                 <>
-                  <h3>Summary</h3>
-                  <p>{currentMovie.summary}</p>
+                  <Stack>
+                    <Typography variant='h3' component='h3'>
+                      Summary
+                    </Typography>
+                  </Stack>
+                  <Stack>
+                    <Typography variant='subtitle2' component='p'>
+                      {currentMovie.summary}
+                    </Typography>
+                  </Stack>
                 </>
               )
             )}
-          </div>
+          </Stack>
         </>
       )}
-    </section>
+    </Stack>
   );
 };
