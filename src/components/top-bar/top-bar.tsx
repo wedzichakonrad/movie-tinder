@@ -4,7 +4,7 @@ import { AppBar, Typography } from '@mui/material';
 const TopBar = () => {
   return (
       <AppBar>
-        <Typography variant='h6' component='div' sx={{ padding: '12px 12px 12px 24px' }}>
+        <Typography variant='h4' component='div' sx={{ padding: '0 0 0 24px' }}>
           Movie tinder
         </Typography>
       </AppBar>

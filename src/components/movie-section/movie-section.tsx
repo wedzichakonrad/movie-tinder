@@ -1,15 +1,28 @@
 import React from 'react';
-import MovieCard from '../movie-card/movie-card';
-import './movie-section.sass';
+import MovieCard, {MovieCardButtonVariants} from '../movie-card/movie-card';
 import { useCurrentMovie } from '../../providers/current-movie-provider';
 import { useEffect, useState } from 'react';
 import { getMovies } from '../../api/get-movies';
 import { updateMovieRecommendation } from '../../api/update-movie-recommendation';
-import Loader from '../loader/loader';
 import { useMovieCardDrag } from '../../hooks/use-movie-card-drag';
-import { MovieCardButtonVariants } from '../movie-card/button/movie-card-button';
 import { MovieProps } from '../../utils/types';
-import { Grid2, Stack, Typography } from '@mui/material';
+import { Grid2, Stack, styled, Typography } from '@mui/material';
+import { formatPxValueToInteger } from '../../helpers/helpers';
+
+const StyledRejectPopup = styled(Stack)(({ theme }: any) => ({
+  color: theme.colors.fontSecondary,
+  backgroundColor: theme.colors.bgReject,
+  position: 'absolute',
+  top: `${formatPxValueToInteger(theme.sizes.heightTopBar) + 80}px`,
+  right: 0,
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  fontSize: theme.sizes.fontTitle,
+  width: '80px',
+  height: '120px',
+  borderRadius: '25% 0 0 25%',
+}));
 
 export const MovieSection = () => {
   const context = useCurrentMovie();
@@ -17,7 +30,7 @@ export const MovieSection = () => {
   const [isFetching, setIsFetching] = useState(false);
   const [movies, setMovies] = useState<MovieProps[]>([]);
   const currentMovie = movies?.[context.currentMovieIndex];
-  const nextMovie = movies?.[context.currentMovieIndex + 1];
+  // const nextMovie = movies?.[context.currentMovieIndex + 1];
 
   const fetchMovies = async () => {
     const movies = await getMovies({ onPending: setIsFetching });
@@ -46,16 +59,16 @@ export const MovieSection = () => {
   return (
     <Stack sx={{ padding: '24px' }} data-testid='movie-section'>
       {isFetching ? (
-        <Loader />
+        <div />
       ) : (
         <>
           <Grid2 container className='movie-section__card-wrapper'>
-            {nextMovie && (
-              <Grid2
-                className={`movie-section__next-movie movie-section__next-movie--${isAnimationOngoing ? 'active' : ''}`}>
-                <MovieCard movie={nextMovie} />
-              </Grid2>
-            )}
+            {/*{nextMovie && (*/}
+            {/*  <Grid2*/}
+            {/*    className={`movie-section__next-movie movie-section__next-movie--${isAnimationOngoing ? 'active' : ''}`}>*/}
+            {/*    <MovieCard movie={nextMovie} />*/}
+            {/*  </Grid2>*/}
+            {/*)}*/}
             {currentMovie ? (
               <Grid2
                 className={`movie-section__current-movie movie-section__current-movie--${isAnimationOngoing ? 'active' : ''}`}>
@@ -72,24 +85,21 @@ export const MovieSection = () => {
             ) : (
               'No more movies!'
             )}
-            <Grid2
-              className={`movie-section__swipe-popup movie-section__swipe-popup--${draggingProps.calculatedPosition === 100 ? 'active' : ''}`}>
-              Reject
-            </Grid2>
+            {draggingProps.calculatedPosition === 100 && <StyledRejectPopup>Reject</StyledRejectPopup>}
           </Grid2>
           <Stack className='movie-section__summary-wrapper'>
             {isAnimationOngoing ? (
-              <Loader />
+              <div />
             ) : (
               currentMovie && (
                 <>
                   <Stack>
-                    <Typography variant='h3' component='h3'>
+                    <Typography variant='h4' component='h3'>
                       Summary
                     </Typography>
                   </Stack>
                   <Stack>
-                    <Typography variant='subtitle2' component='p'>
+                    <Typography variant='body1' component='p'>
                       {currentMovie.summary}
                     </Typography>
                   </Stack>

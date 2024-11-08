@@ -1,10 +1,8 @@
 import React from 'react';
-import './movie-card.sass';
 import { ReactComponent as Check } from '../../assets/check.svg';
 import { ReactComponent as Cross } from '../../assets/cross.svg';
-import MovieCardButton, { MovieCardButtonVariants } from './button/movie-card-button';
 import { MovieProps } from '../../utils/types';
-import { Card, CardActions, CardHeader, CardMedia } from '@mui/material';
+import { Button, Card, CardActions, CardHeader, CardMedia, styled } from '@mui/material';
 
 type MovieCardProps = {
   movie: MovieProps;
@@ -20,6 +18,37 @@ export enum EventTypes {
   MOUSE,
   TOUCH,
 }
+
+export const MovieCardButtonVariants = {
+  accept: 'accept',
+  reject: 'reject',
+};
+
+const StyledAcceptButton = styled(Button)(({ theme }: any) => ({
+  color: theme.colors.fontPrimary,
+  width: '50%',
+  border: `1px solid ${theme.colors.bgAccept}`,
+  ':hover, :focus': {
+    backgroundColor: theme.colors.bgAccept,
+    color: theme.colors.fontSecondary,
+    'svg': {
+      fill: theme.colors.fontSecondary
+    }
+  },
+}));
+
+const StyledRejectButton = styled(Button)(({ theme }: any) => ({
+  color: theme.colors.fontPrimary,
+  border: `1px solid ${theme.colors.bgReject}`,
+  width: '50%',
+  ':hover, :focus': {
+    backgroundColor: theme.colors.bgReject,
+    color: theme.colors.fontSecondary,
+    'svg path': {
+      stroke: theme.colors.fontSecondary
+    }
+  },
+}));
 
 const MovieCard = ({
   movie,
@@ -44,28 +73,22 @@ const MovieCard = ({
       onTouchMove={(e: React.TouchEvent) => handleEventMove?.(e, EventTypes.TOUCH)}
       onTouchEnd={onDraggingEnd}
       style={styles}
-      sx={{ maxHeight: 600 }}
-      className='movie-card'>
-      <CardHeader>
-        <h2>{movie.title}</h2>
-        <span>({movie.rating}/10)</span>
-      </CardHeader>
-      <CardMedia component='img' height='194' image={movie.imageURL} alt={movie.title} />
+      sx={{ maxHeight: 600 }}>
+      <CardHeader title={movie.title} subheader={movie.rating/10}/>
+      <CardMedia draggable={false} component='img' height='194' image={movie.imageURL} alt={movie.title} />
       <CardActions>
-        <MovieCardButton
-          text='Accept'
-          Icon={Check}
-          variant={MovieCardButtonVariants.accept}
-          onClick={onButtonClick}
-          disabled={disabled}
-        />
-        <MovieCardButton
-          text='Reject'
-          Icon={Cross}
-          variant={MovieCardButtonVariants.reject}
-          onClick={onButtonClick}
-          disabled={disabled}
-        />
+        <StyledAcceptButton disableRipple onClick={() => onButtonClick(MovieCardButtonVariants.accept)} disabled={disabled}>
+          <>
+            <Check/>
+            Accept
+          </>
+        </StyledAcceptButton>
+        <StyledRejectButton disableRipple onClick={() => onButtonClick(MovieCardButtonVariants.reject)} disabled={disabled}>
+          <>
+            <Cross/>
+            Reject
+          </>
+        </StyledRejectButton>
       </CardActions>
     </Card>
   );
