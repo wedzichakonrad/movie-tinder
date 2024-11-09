@@ -62,7 +62,7 @@ export const MovieSection = () => {
         <div />
       ) : (
         <>
-          <Grid2 container className='movie-section__card-wrapper'>
+          <Grid2 container>
             {/*{nextMovie && (*/}
             {/*  <Grid2*/}
             {/*    className={`movie-section__next-movie movie-section__next-movie--${isAnimationOngoing ? 'active' : ''}`}>*/}
@@ -87,7 +87,7 @@ export const MovieSection = () => {
             )}
             {draggingProps.calculatedPosition === 100 && <StyledRejectPopup>Reject</StyledRejectPopup>}
           </Grid2>
-          <Stack className='movie-section__summary-wrapper'>
+          <Stack sx={{marginTop: '20px'}}>
             {isAnimationOngoing ? (
               <div />
             ) : (

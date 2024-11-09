@@ -31,9 +31,9 @@ const StyledAcceptButton = styled(Button)(({ theme }: any) => ({
   ':hover, :focus': {
     backgroundColor: theme.colors.bgAccept,
     color: theme.colors.fontSecondary,
-    'svg': {
-      fill: theme.colors.fontSecondary
-    }
+    svg: {
+      fill: theme.colors.fontSecondary,
+    },
   },
 }));
 
@@ -45,8 +45,8 @@ const StyledRejectButton = styled(Button)(({ theme }: any) => ({
     backgroundColor: theme.colors.bgReject,
     color: theme.colors.fontSecondary,
     'svg path': {
-      stroke: theme.colors.fontSecondary
-    }
+      stroke: theme.colors.fontSecondary,
+    },
   },
 }));
 
@@ -74,18 +74,31 @@ const MovieCard = ({
       onTouchEnd={onDraggingEnd}
       style={styles}
       sx={{ maxHeight: 600 }}>
-      <CardHeader title={movie.title} subheader={movie.rating/10}/>
-      <CardMedia draggable={false} component='img' height='194' image={movie.imageURL} alt={movie.title} />
+      <CardHeader title={movie.title} subheader={`${movie.rating} / 10`} />
+      <CardMedia
+        draggable={false}
+        component='img'
+        height='194'
+        image={movie.imageURL}
+        alt={movie.title}
+        sx={{ objectFit: 'contain', background: 'black' }}
+      />
       <CardActions>
-        <StyledAcceptButton disableRipple onClick={() => onButtonClick(MovieCardButtonVariants.accept)} disabled={disabled}>
+        <StyledAcceptButton
+          disableRipple
+          onClick={() => onButtonClick(MovieCardButtonVariants.accept)}
+          disabled={disabled}>
           <>
-            <Check/>
+            <Check />
             Accept
           </>
         </StyledAcceptButton>
-        <StyledRejectButton disableRipple onClick={() => onButtonClick(MovieCardButtonVariants.reject)} disabled={disabled}>
+        <StyledRejectButton
+          disableRipple
+          onClick={() => onButtonClick(MovieCardButtonVariants.reject)}
+          disabled={disabled}>
           <>
-            <Cross/>
+            <Cross />
             Reject
           </>
         </StyledRejectButton>

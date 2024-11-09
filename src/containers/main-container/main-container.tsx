@@ -4,7 +4,7 @@ import { Box } from '@mui/material';
 
 const MainContainer = () => {
   return (
-    <Box component='main' sx={{ position: 'relative', top: '56px' }}>
+    <Box component='main' sx={{ position: 'relative', top: '80px' }}>
       <MovieSection />
     </Box>
   );
