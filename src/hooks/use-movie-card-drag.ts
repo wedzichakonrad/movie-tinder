@@ -60,12 +60,11 @@ export const useMovieCardDrag = ({ onMouseDown }: UseMovieCardDragProps) => {
   };
 
   const onDraggingEnd = () => {
-    setDraggingProps((state) => ({
-      ...state,
+    setDraggingProps({
       isDragging: false,
       styles: { transform: 'translateX(0px)' },
       calculatedPosition: 0,
-    }));
+    });
     if (draggingProps.calculatedPosition === 100) {
       onMouseDown();
     }

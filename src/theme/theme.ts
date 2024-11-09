@@ -1,10 +1,14 @@
 import { createTheme } from '@mui/material';
-import { variables } from './variables/variables';
+import { variables } from './variables/variables'; // Ensure this exports correct types
 import { overriddenComponents } from './components/components';
 
-export const theme = createTheme({
+export const theme: any = createTheme({
   ...variables,
   components: {
-    ...overriddenComponents(variables),
+    ...overriddenComponents(
+        createTheme({
+          ...variables,
+        })
+    ),
   },
 });
