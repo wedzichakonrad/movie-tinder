@@ -24,6 +24,10 @@ export const MovieCardButtonVariants = {
   reject: 'reject',
 };
 
+const StyledCard = styled(Card)(() => ({
+  width: '100%',
+}));
+
 const StyledAcceptButton = styled(Button)(({ theme }: any) => ({
   color: theme.colors.fontPrimary,
   width: '50%',
@@ -63,8 +67,10 @@ const MovieCard = ({
     onClick?.(variant, movie.id);
   };
 
+  // @ts-ignore
+  // @ts-ignore
   return (
-    <Card
+    <StyledCard
       onMouseDown={(e: React.MouseEvent) => handleEventDown?.(e, EventTypes.MOUSE)}
       onMouseMove={(e: React.MouseEvent) => handleEventMove?.(e, EventTypes.MOUSE)}
       onMouseLeave={onDraggingEnd}
@@ -78,7 +84,7 @@ const MovieCard = ({
       <CardMedia
         draggable={false}
         component='img'
-        height='194'
+        height='400'
         image={movie.imageURL}
         alt={movie.title}
         sx={{ objectFit: 'contain', background: 'black' }}
@@ -103,7 +109,7 @@ const MovieCard = ({
           </>
         </StyledRejectButton>
       </CardActions>
-    </Card>
+    </StyledCard>
   );
 };
 
