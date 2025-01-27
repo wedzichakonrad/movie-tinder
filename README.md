@@ -2,7 +2,7 @@
 
 ## Simple single-page application for selecting a movie to watch
 
-The app works both on desktop and mobile devices
+App under refactor
 
 Node version used: v14.21.3\
 Npm version used: 6.14.18
