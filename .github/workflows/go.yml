@@ -43,7 +43,9 @@ jobs:
 
       - name: Check build size
         run: |
-          BUILD_SIZE=$(du -sh ./build | cut -f1) if [ $(du -sb ./build | cut -f1) -gt 5242880 ]; then # 5MB in bytes
+          BUILD_SIZE=$(du -sh ./build | cut -f1)
+          echo "Build size is $BUILD_SIZE"
+          if [ $(du -sb ./build | cut -f1) -gt 5242880 ]; then # 5MB in bytes
             echo "Build size exceeds 5MB, aborting."
             exit 1
           fi
