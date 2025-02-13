@@ -6,7 +6,7 @@ import { getMovies } from '../../api/get-movies';
 import { updateMovieRecommendation } from '../../api/update-movie-recommendation';
 import { useMovieCardDrag } from '../../hooks/use-movie-card-drag';
 import { MovieProps } from '../../utils/types';
-import { Grid2, Stack, styled, Typography } from '@mui/material';
+import { Grid2, Stack, styled, Typography} from '@mui/material';
 import { formatPxValueToInteger } from '../../helpers/helpers';
 
 const StyledRejectPopup = styled(Stack)(({ theme }: any) => ({
@@ -22,6 +22,11 @@ const StyledRejectPopup = styled(Stack)(({ theme }: any) => ({
   width: '80px',
   height: '120px',
   borderRadius: '25% 0 0 25%',
+}));
+
+
+const StyledGrid = styled(Grid2)(() => ({
+  width: '100%',
 }));
 
 export const MovieSection = () => {
@@ -70,7 +75,7 @@ export const MovieSection = () => {
             {/*  </Grid2>*/}
             {/*)}*/}
             {currentMovie ? (
-              <Grid2
+              <StyledGrid
                 className={`movie-section__current-movie movie-section__current-movie--${isAnimationOngoing ? 'active' : ''}`}>
                 <MovieCard
                   movie={currentMovie}
@@ -81,7 +86,7 @@ export const MovieSection = () => {
                   onDraggingEnd={onDraggingEnd}
                   styles={draggingProps.styles}
                 />
-              </Grid2>
+              </StyledGrid>
             ) : (
               'No more movies!'
             )}
