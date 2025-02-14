@@ -63,6 +63,8 @@ const MovieCard = ({
     onClick?.(variant, movie.id);
   };
 
+  console.log('test')
+
   return (
     <Card
       onMouseDown={(e: React.MouseEvent) => handleEventDown?.(e, EventTypes.MOUSE)}
